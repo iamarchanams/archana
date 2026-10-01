@@ -35,7 +35,7 @@
     "ctaContactText": "Get in Touch",
     "ctaResumeText": "Click to Download Resume",
     "resumeFile": "media/files/1790859835172-Srikanth_DM_2026-pdf.pdf",
-    "photoStyle": "square",
+    "photoStyle": "transparent",
     "photoAnimation": "float-glow"
   },
   "about": {
