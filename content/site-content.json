@@ -3,9 +3,19 @@
     "siteTitle": "Archana M.S | Digital & Sales Marketing Executive",
     "seoDescription": "Portfolio of Archana M.S, Digital & Sales Marketing Executive — skills, experience, education, certifications and sales performance highlights.",
     "seoKeywords": "Archana M.S, digital marketing executive, sales executive, Kerala",
-    "favicon": "media/images/favicon.png"
+    "favicon": "favicon.svg"
   },
-  "sectionOrder": ["home", "about", "skills", "experience", "education", "certifications", "achievements", "contact"],
+  "sectionOrder": [
+    "home",
+    "about",
+    "skills",
+    "experience",
+    "education",
+    "certifications",
+    "achievements",
+    "gallery",
+    "contact"
+  ],
   "sectionVisibility": {
     "home": true,
     "about": true,
@@ -14,7 +24,8 @@
     "education": true,
     "certifications": true,
     "achievements": true,
-    "contact": true
+    "contact": true,
+    "gallery": true
   },
   "home": {
     "name": "Archana M.S",
@@ -29,20 +40,29 @@
     "heading": "About Me",
     "bio": "To pursue a challenging career with dedication and provide my efficiency to the fullest in a professional organizational environment wherever I serve my duties that will discover the potential in me.",
     "location": "Kunnathukal P.O., Trivandrum, Kerala",
-    "languages": ["English", "Malayalam", "Tamil"]
+    "languages": [
+      "English",
+      "Malayalam",
+      "Tamil"
+    ]
   },
   "skills": {
     "heading": "Skills",
-    "items": ["Teaching", "Team Player", "Fast Learner"]
+    "items": [
+      "Teaching",
+      "Team Player",
+      "Fast Learner"
+    ]
   },
   "experience": {
     "heading": "Experience",
     "items": [
       {
-        "company": "Avodha Edutech",
         "role": "Team Manager",
-        "duration": "1 Year",
-        "description": ""
+        "company": "Avodha Edutech",
+        "duration": "4 Year",
+        "description": "",
+        "points": []
       }
     ]
   },
@@ -81,12 +101,18 @@
       {
         "title": "Medical Coding",
         "institution": "Transorze Solutions, Ambalathara, Trivandrum",
-        "year": "2021"
+        "year": "2021",
+        "description": "",
+        "credentialUrl": "",
+        "image": ""
       },
       {
         "title": "Hospital Management",
         "institution": "",
-        "year": "2022"
+        "year": "2022",
+        "description": "",
+        "credentialUrl": "",
+        "image": ""
       }
     ]
   },
@@ -96,17 +122,39 @@
     "items": [
       {
         "period": "First Month",
+        "title": "",
         "summary": "Strong first month with more closings than expected, positive client response, and several promising leads identified for follow-up.",
-        "closings": "4",
-        "revenue": "\u20b99,296",
-        "dealValue": ""
+        "metrics": [
+          {
+            "label": "Closings",
+            "value": "4"
+          },
+          {
+            "label": "Revenue",
+            "value": "₹9,296"
+          }
+        ],
+        "image": ""
       },
       {
         "period": "September",
+        "title": "",
         "summary": "Closed deals across the Orderbix and Storebix platforms, building strong momentum heading into the next follow-up cycle.",
-        "closings": "8",
-        "revenue": "\u20b932,195",
-        "dealValue": "\u20b949,294"
+        "metrics": [
+          {
+            "label": "Closings",
+            "value": "8"
+          },
+          {
+            "label": "Revenue",
+            "value": "₹32,195"
+          },
+          {
+            "label": "Deal Value",
+            "value": "₹49,294"
+          }
+        ],
+        "image": ""
       }
     ]
   },
@@ -115,6 +163,12 @@
     "subheading": "Open to new opportunities in digital and sales marketing.",
     "phone": "+91 96338 55662",
     "email": "archanams979@gmail.com",
-    "location": "Kunnathukal P.O., Trivandrum, Kerala"
+    "location": "Kunnathukal P.O., Trivandrum, Kerala",
+    "socials": []
+  },
+  "gallery": {
+    "heading": "Career Gallery",
+    "subheading": "Moments and milestones from my career.",
+    "items": []
   }
 }
