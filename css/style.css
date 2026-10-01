@@ -204,3 +204,8 @@ footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:v
   *,*::before,*::after{animation:none !important;transition:none !important}
   .reveal,.hero-copy > *,.hero-photo{opacity:1 !important;transform:none !important}
 }
+
+/* experience proof thumbnail */
+.proof{display:flex;align-items:center;gap:10px;margin-top:10px}
+.proof .thumb{width:84px;aspect-ratio:4/3;border-radius:8px;border:1px solid var(--accent-light,#ddd);flex-shrink:0}
+.proof-label{font-size:.78rem;color:var(--text-dim)}

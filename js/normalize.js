@@ -35,7 +35,7 @@
 
     c.experience = Object.assign({ heading: "Experience", items: [] }, c.experience);
     c.experience.items = arr(c.experience.items).map(function (e) {
-      return Object.assign({ role: "", company: "", duration: "", description: "", points: [] }, e, { points: arr(e && e.points) });
+      return Object.assign({ role: "", company: "", duration: "", description: "", points: [], image: "" }, e, { points: arr(e && e.points) });
     });
 
     c.education = Object.assign({ heading: "Education", items: [] }, c.education);

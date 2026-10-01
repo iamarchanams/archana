@@ -98,6 +98,7 @@
         '<div class="timeline-meta">' + esc(e.company) + (e.duration ? " · " + esc(e.duration) : "") + "</div>" +
         (e.description ? "<p>" + esc(e.description) + "</p>" : "") +
         (points.length ? "<ul>" + points.map(function (p) { return "<li>" + esc(p) + "</li>"; }).join("") + "</ul>" : "") +
+        (e.image ? '<div class="proof">' + thumb(e.image, e.role + (e.company ? " — " + e.company : ""), "Proof of employment", e.role + " proof") + '<span class="proof-label">Proof · tap to view</span></div>' : "") +
       "</div>";
     }).join("");
     return '<section id="experience"><div class="container">' +

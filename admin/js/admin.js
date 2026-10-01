@@ -561,11 +561,12 @@
     },
     experience: function (d) {
       return [headingCard("Experience", d), listManager("Jobs & roles", d.items, {
-        noun: "experience", required: { key: "role", label: "Role" }, hint: "Newest first. New entries are added at the top.",
-        blank: function () { return { role: "", company: "", duration: "", description: "", points: [] }; },
+        noun: "experience", hasImage: true, required: { key: "role", label: "Role" }, hint: "Newest first. New entries are added at the top.",
+        blank: function () { return { role: "", company: "", duration: "", description: "", points: [], image: "" }; },
         fields: [T("role", "Role / title"), { row: [T("company", "Company"), T("duration", "Duration (e.g. Jan 2025 – Present)")] },
-          T("description", "Short description", "textarea"), T("points", "Key points (one per line)", "lines", "Each line becomes a bullet on the site.")],
-        summary: function (e) { return { title: e.role, sub: join(e.company, e.duration) }; }
+          T("description", "Short description", "textarea"), T("points", "Key points (one per line)", "lines", "Each line becomes a bullet on the site."),
+          T("image", "Proof image (ID card, experience letter…) — optional", "image", "Shown as a small thumbnail on the site. Visitors can tap it to view it larger. Cover any ID number or address you don’t want public.")],
+        summary: function (e) { return { title: e.role, sub: join(e.company, e.duration), image: e.image }; }
       })];
     },
     education: function (d) {
