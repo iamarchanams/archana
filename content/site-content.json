@@ -31,10 +31,12 @@
     "name": "Archana M.S",
     "headline": "Digital Marketing & Sales Executive",
     "tagline": "Turning leads into lasting business relationships.",
-    "photo": "media/images/1790859648428-1000204921.jpg",
+    "photo": "media/images/1790875354885-1790859648428-1000204921-removebg-previe.png",
     "ctaContactText": "Get in Touch",
     "ctaResumeText": "Click to Download Resume",
-    "resumeFile": "media/files/1790859835172-Srikanth_DM_2026-pdf.pdf"
+    "resumeFile": "media/files/1790859835172-Srikanth_DM_2026-pdf.pdf",
+    "photoStyle": "square",
+    "photoAnimation": "float-glow"
   },
   "about": {
     "heading": "About Me",
@@ -170,7 +172,25 @@
         "label": "Whatsapp",
         "url": "https://wa.me/+919633855662"
       }
-    ]
+    ],
+    "floating": {
+      "enabled": true,
+      "position": "right",
+      "whatsapp": {
+        "enabled": true,
+        "number": "",
+        "message": "Hi! I saw your portfolio and would like to connect."
+      },
+      "call": {
+        "enabled": true,
+        "number": ""
+      },
+      "email": {
+        "enabled": true,
+        "address": "",
+        "subject": "Enquiry from your portfolio"
+      }
+    }
   },
   "gallery": {
     "heading": "Career Gallery",
