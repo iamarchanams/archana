@@ -11,7 +11,7 @@ module.exports = async (req, res) => {
 
   try {
     const { path } = req.body || {};
-    if (!path || !/^media\/(images|videos)\/[a-zA-Z0-9._-]+$/.test(path)) {
+    if (!path || !/^media\/(images|files)\/[a-zA-Z0-9._-]+$/.test(path)) {
       return res.status(400).json({ error: "Invalid media path" });
     }
 

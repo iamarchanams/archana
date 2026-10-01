@@ -10,9 +10,9 @@ module.exports = async (req, res) => {
   if (!user) return;
 
   try {
-    const [images, videos] = await Promise.all([
+    const [images, docs] = await Promise.all([
       github.listDir("media/images"),
-      github.listDir("media/videos")
+      github.listDir("media/files")
     ]);
 
     const toEntry = (item) => ({
@@ -24,7 +24,7 @@ module.exports = async (req, res) => {
 
     const files = [
       ...images.filter((i) => i.type === "file" && i.name !== ".gitkeep").map(toEntry),
-      ...videos.filter((i) => i.type === "file" && i.name !== ".gitkeep").map(toEntry)
+      ...docs.filter((i) => i.type === "file" && i.name !== ".gitkeep").map(toEntry)
     ];
 
     res.status(200).json({ files });

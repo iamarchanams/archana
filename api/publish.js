@@ -31,6 +31,10 @@ module.exports = async (req, res) => {
       if (!(key in content)) return res.status(400).json({ error: `Content is missing section "${key}"` });
     }
 
+    if (JSON.stringify(content).length > 900000) {
+      return res.status(400).json({ error: "Content is too large to publish." });
+    }
+
     const existing = await github.getFile(CONTENT_PATH);
     const jsonStr = JSON.stringify(content, null, 2);
     const base64 = Buffer.from(jsonStr, "utf8").toString("base64");

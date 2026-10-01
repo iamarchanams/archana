@@ -16,7 +16,7 @@ module.exports = async (req, res) => {
 
   await delay(400);
 
-  const pin = req.body && req.body.pin;
+  const pin = req.body && typeof req.body.pin === "string" ? req.body.pin.trim() : "";
   if (!pin || typeof pin !== "string") {
     return res.status(400).json({ error: "Missing PIN" });
   }
@@ -32,5 +32,5 @@ module.exports = async (req, res) => {
 
   const sessionToken = jwt.sign({ admin: true }, config.SESSION_SECRET(), 60 * 60 * 8);
   res.setHeader("Set-Cookie", serializeCookie("admin_session", sessionToken, { maxAge: 60 * 60 * 8 }));
-  res.status(200).json({ ok: true });
+  res.status(200).json({ ok: true, token: sessionToken });
 };

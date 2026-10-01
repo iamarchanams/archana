@@ -2,24 +2,26 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0e0e11">
+<meta name="color-scheme" content="dark">
 <title>Admin — Archana M.S Portfolio</title>
 <meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/admin.css">
 </head>
 <body>
 
-<div id="loginView" class="login-screen">
+<div id="loginView" class="login-screen hidden">
   <div class="login-card">
     <h1>Admin Login</h1>
     <p class="muted">Enter the admin PIN to manage this site.</p>
     <form id="pinForm">
       <div class="field-group">
-        <input type="password" id="pinInput" inputmode="numeric" autocomplete="off"
-               placeholder="PIN" style="text-align:center;font-size:1.3rem;letter-spacing:.2em">
+        <input type="password" id="pinInput" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="go" placeholder="PIN" style="text-align:center;font-size:1.3rem;letter-spacing:.2em">
       </div>
-      <button type="submit" class="btn btn-primary btn-block">Unlock</button>
+      <button type="submit" class="btn btn-primary btn-block" id="pinSubmit">Unlock</button>
     </form>
     <p id="loginError" class="error-text"></p>
   </div>
@@ -28,34 +30,53 @@
 <div id="dashboardView" class="dashboard hidden">
   <header class="admin-header">
     <div class="admin-header-inner">
-      <span class="admin-title">Archana M.S — Admin</span>
+      <span class="admin-title">Archana M.S — Admin <span id="dirtyBadge" class="badge hidden">Unpublished changes</span></span>
       <div class="admin-header-actions">
-        <span id="userLabel" class="muted"></span>
+        <a href="../" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">View site</a>
+        <button id="discardBtn" class="btn btn-ghost btn-sm">Discard changes</button>
         <button id="previewBtn" class="btn btn-outline btn-sm">Preview</button>
-        <button id="publishBtn" class="btn btn-primary btn-sm">Publish Changes</button>
+        <button id="publishBtn" class="btn btn-primary btn-sm">Publish changes</button>
         <button id="logoutBtn" class="btn btn-ghost btn-sm">Log out</button>
       </div>
     </div>
     <div id="publishStatus" class="publish-status"></div>
   </header>
 
+  <div id="restoreBanner" class="restore-banner hidden">
+    <span>You have unpublished edits saved from your last visit.</span>
+    <button class="btn btn-primary btn-sm" id="restoreYes">Restore them</button>
+    <button class="btn btn-ghost btn-sm" id="restoreNo">Discard</button>
+  </div>
+
   <div class="admin-body">
     <nav class="admin-sidebar" id="sectionNav"></nav>
-    <main class="admin-content" id="sectionContent">
-      <div class="empty-note">Loading content…</div>
-    </main>
+    <main class="admin-content" id="sectionContent"><div class="empty-note">Loading content…</div></main>
+  </div>
+</div>
+
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+  <div class="modal-card">
+    <div class="modal-head"><h3 id="modalTitle"></h3><button class="btn btn-ghost btn-sm" id="modalX" aria-label="Close">✕</button></div>
+    <div class="modal-body" id="modalBody"></div>
+    <div class="modal-foot">
+      <button class="btn btn-ghost" id="modalCancel">Cancel</button>
+      <button class="btn btn-primary" id="modalSave">Save</button>
+    </div>
   </div>
 </div>
 
 <div id="previewModal" class="preview-modal hidden">
   <div class="preview-modal-bar">
-    <span>Draft Preview</span>
+    <span>Draft preview</span>
     <button id="closePreviewBtn" class="btn btn-ghost btn-sm">Close</button>
   </div>
-  <iframe id="previewFrame"></iframe>
+  <div class="preview-wrap"><iframe id="previewFrame" title="Draft preview"></iframe></div>
 </div>
 
+<div id="toasts" class="toasts" aria-live="polite"></div>
+
 <script src="../config.js"></script>
+<script src="../js/normalize.js"></script>
 <script src="js/admin.js"></script>
 </body>
 </html>

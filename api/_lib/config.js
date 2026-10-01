@@ -11,7 +11,7 @@ module.exports = {
   GITHUB_OWNER: () => required("GITHUB_OWNER"),   // e.g. "SrikanthSR21"
   GITHUB_REPO: () => required("GITHUB_REPO"),     // e.g. "rahul-v-r-portfolio"
   GITHUB_BRANCH: () => process.env.GITHUB_BRANCH || "main",
-  ADMIN_PIN: () => required("ADMIN_PIN"),         // the PIN/password used to log into /admin/
+  ADMIN_PIN: () => required("ADMIN_PIN").trim(),         // the PIN/password used to log into /admin/
   SESSION_SECRET: () => required("SESSION_SECRET"), // long random string, used to sign the session token
   SITE_URL: () => process.env.SITE_URL || "*"     // e.g. https://srikanthsr21.github.io — used for CORS
 };
