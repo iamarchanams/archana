@@ -29,7 +29,7 @@
   },
   "home": {
     "name": "Archana M.S",
-    "headline": "Digital & Sales Marketing Executive",
+    "headline": "Digital Marketing & Sales Executive",
     "tagline": "Turning leads into lasting business relationships.",
     "photo": "media/images/PLACEHOLDER-portrait.jpg",
     "ctaContactText": "Get in Touch",
@@ -62,7 +62,8 @@
         "company": "Avodha Edutech",
         "duration": "4 Year",
         "description": "",
-        "points": []
+        "points": [],
+        "image": ""
       }
     ]
   },
