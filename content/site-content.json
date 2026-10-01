@@ -175,27 +175,22 @@
     "phone": "+91 96338 55662",
     "email": "archanams979@gmail.com",
     "location": "Kunnathukal P.O., Trivandrum, Kerala",
-    "socials": [
-      {
-        "label": "Whatsapp",
-        "url": "https://wa.me/+919633855662"
-      }
-    ],
+    "socials": [],
     "floating": {
       "enabled": true,
       "position": "right",
       "whatsapp": {
         "enabled": true,
-        "number": "",
+        "number": "+919633855662",
         "message": "Hi! I saw your portfolio and would like to connect."
       },
       "call": {
         "enabled": true,
-        "number": ""
+        "number": "+919633855662"
       },
       "email": {
         "enabled": true,
-        "address": "",
+        "address": "iamarchanams@gmail.com",
         "subject": "Enquiry from your portfolio"
       }
     }
