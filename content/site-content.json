@@ -60,12 +60,20 @@
     "heading": "Experience",
     "items": [
       {
+        "role": "Digital Marketing and Sales Executive",
+        "company": "Cyberbix Solutions",
+        "duration": "June 2026 - Present",
+        "description": "",
+        "points": [],
+        "image": "media/images/1790875739370-images-1.jpg"
+      },
+      {
         "role": "Team Manager",
         "company": "Avodha Edutech",
         "duration": "4 Year",
         "description": "",
         "points": [],
-        "image": ""
+        "image": "media/images/1790875637485-images.jpg"
       }
     ]
   },
