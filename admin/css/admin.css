@@ -206,3 +206,16 @@ html.modal-lock,html.modal-lock body{overflow:hidden;position:fixed;width:100%}
   .metric-row{grid-template-columns:1fr 1fr 44px}
   .login-card{padding:28px 20px}
 }
+
+/* select + toggle switch */
+.field-group select{width:100%;background:var(--surface2);border:1px solid var(--line);border-radius:8px;padding:11px 13px;color:var(--text);font-size:16px;font-family:inherit;-webkit-appearance:none;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23999' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.field-group select:focus{border-color:var(--accent);outline:none}
+.field-group>label.toggle,.toggle{display:flex;align-items:center;gap:12px;cursor:pointer;min-height:44px;font-size:.95rem;color:var(--text);font-weight:600;margin:0}
+.toggle-group{margin-bottom:6px}
+.toggle input{position:absolute;opacity:0;width:1px;height:1px}
+.toggle-ui{position:relative;flex:0 0 46px;height:26px;border-radius:13px;background:var(--surface2);border:1px solid var(--line);transition:background .2s}
+.toggle-ui::after{content:"";position:absolute;top:2px;left:2px;width:20px;height:20px;border-radius:50%;background:#999;transition:transform .2s,background .2s}
+.toggle input:checked+.toggle-ui{background:var(--accent);border-color:var(--accent)}
+.toggle input:checked+.toggle-ui::after{transform:translateX(20px);background:#fff}
+.toggle input:focus-visible+.toggle-ui{outline:2px solid var(--accent);outline-offset:2px}

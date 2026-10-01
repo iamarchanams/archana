@@ -215,6 +215,25 @@
     input.addEventListener("input", function () { onChange(input.value); markDirty(); });
     return wrap;
   }
+  function selectField(label, value, options, onChange, hint) {
+    var id = "f_" + Math.random().toString(36).slice(2);
+    var wrap = el("div", "field-group");
+    wrap.innerHTML = '<label for="' + id + '">' + esc(label) + '</label><select id="' + id + '">' +
+      options.map(function (o) { return '<option value="' + esc(o[0]) + '">' + esc(o[1]) + "</option>"; }).join("") + "</select>" +
+      (hint ? '<div class="field-hint">' + esc(hint) + "</div>" : "");
+    var sel = wrap.querySelector("select"); sel.value = value;
+    sel.addEventListener("change", function () { onChange(sel.value); markDirty(); });
+    return wrap;
+  }
+  function toggleField(label, value, onChange, hint) {
+    var id = "f_" + Math.random().toString(36).slice(2);
+    var wrap = el("div", "field-group toggle-group");
+    wrap.innerHTML = '<label class="toggle" for="' + id + '"><input id="' + id + '" type="checkbox"><span class="toggle-ui"></span><span class="toggle-text">' + esc(label) + "</span></label>" +
+      (hint ? '<div class="field-hint">' + esc(hint) + "</div>" : "");
+    var cb = wrap.querySelector("input"); cb.checked = !!value;
+    cb.addEventListener("change", function () { onChange(cb.checked); markDirty(); });
+    return wrap;
+  }
   function row() { var r = el("div", "field-row"); Array.prototype.slice.call(arguments).forEach(function (c) { r.appendChild(c); }); return r; }
 
   function sectionCard(title) {
@@ -278,9 +297,36 @@
       var canvas = document.createElement("canvas");
       canvas.width = Math.round(img.naturalWidth * scale); canvas.height = Math.round(img.naturalHeight * scale);
       var ctx = canvas.getContext("2d");
-      ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // PNG/WebP: if the picture has transparent pixels, keep them (a cut-out hero photo) instead of flattening onto white
+      var hasAlpha = false;
+      if (ftype === "image/png" || ftype === "image/webp") {
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+        try {
+          var px = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+          for (var i = 3; i < px.length; i += 4 * 7) { if (px[i] < 250) { hasAlpha = true; break; } }
+        } catch (e) { hasAlpha = false; }
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      if (!hasAlpha) { ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, canvas.width, canvas.height); }
       ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
       URL.revokeObjectURL(url);
+      if (hasAlpha) {
+        // keep the alpha channel: PNG, shrinking the picture until it fits the upload limit
+        var cw = canvas.width, ch = canvas.height, src = canvas;
+        var tryPng = function () {
+          return new Promise(function (r) { src.toBlob(r, "image/png"); }).then(function (blob) {
+            if (blob.size > 2.6 * 1024 * 1024 && cw > 500) {
+              cw = Math.round(cw * 0.8); ch = Math.round(ch * 0.8);
+              var c2 = document.createElement("canvas"); c2.width = cw; c2.height = ch;
+              c2.getContext("2d").drawImage(canvas, 0, 0, cw, ch); src = c2;
+              return tryPng();
+            }
+            if (blob.size > MAX_UPLOAD) throw new Error("That transparent image is too large. Try a smaller one.");
+            return { blob: blob, type: "image/png", ext: "png" };
+          });
+        };
+        return tryPng();
+      }
       var q = 0.86;
       function attempt() {
         return new Promise(function (r) { canvas.toBlob(r, "image/jpeg", q); }).then(function (blob) {
@@ -534,7 +580,11 @@
       c.appendChild(field("Name", d.name, function (v) { d.name = v; }));
       c.appendChild(field("Headline (job title)", d.headline, function (v) { d.headline = v; }));
       c.appendChild(field("Tagline", d.tagline, function (v) { d.tagline = v; }, "textarea"));
-      c.appendChild(imageField("Profile photo", d.photo, function (v) { d.photo = v; }, "Shown in a circle. A square photo with your face centred works best."));
+      c.appendChild(imageField("Profile photo", d.photo, function (v) { d.photo = v; }, "For the transparent style upload a PNG with a transparent background (a cut-out). Otherwise a square photo with your face centred works best."));
+      c.appendChild(row(
+        selectField("Photo style", d.photoStyle, [["square", "Square (soft corners, framed)"], ["transparent", "Transparent / no frame (PNG cut-out)"], ["circle", "Circle (old look)"]], function (v) { d.photoStyle = v; }),
+        selectField("Photo animation", d.photoAnimation, [["float-glow", "Floating + glow"], ["float", "Floating only"], ["glow", "Glow only"], ["none", "No animation"]], function (v) { d.photoAnimation = v; })
+      ));
       c.appendChild(row(
         field("Contact button text", d.ctaContactText, function (v) { d.ctaContactText = v; }),
         field("Resume button text", d.ctaResumeText, function (v) { d.ctaResumeText = v; })
@@ -612,7 +662,23 @@
       var c = headingCard("Contact", d, true);
       c.appendChild(row(field("Phone", d.phone, function (v) { d.phone = v; }, "tel"), field("Email", d.email, function (v) { d.email = v; }, "email")));
       c.appendChild(field("Location", d.location, function (v) { d.location = v; }));
-      return [c, listManager("Social & web links", d.socials, {
+      var f = d.floating, fc = sectionCard("Floating buttons (WhatsApp, Call, Email)");
+      fc.appendChild(el("p", "muted", "Round buttons that stay on screen while visitors scroll. Leave a number or email blank to use the details above."));
+      fc.appendChild(toggleField("Show floating buttons on the website", f.enabled, function (v) { f.enabled = v; }));
+      fc.appendChild(selectField("Side of the screen", f.position, [["right", "Right"], ["left", "Left"]], function (v) { f.position = v; }));
+      fc.appendChild(toggleField("WhatsApp button", f.whatsapp.enabled, function (v) { f.whatsapp.enabled = v; }));
+      fc.appendChild(row(
+        field("WhatsApp number (with country code)", f.whatsapp.number, function (v) { f.whatsapp.number = v; }, "tel", "e.g. +91 96338 55662"),
+        field("Pre-filled message", f.whatsapp.message, function (v) { f.whatsapp.message = v; })
+      ));
+      fc.appendChild(toggleField("Call button", f.call.enabled, function (v) { f.call.enabled = v; }));
+      fc.appendChild(field("Phone number to call", f.call.number, function (v) { f.call.number = v; }, "tel"));
+      fc.appendChild(toggleField("Email button", f.email.enabled, function (v) { f.email.enabled = v; }));
+      fc.appendChild(row(
+        field("Email address", f.email.address, function (v) { f.email.address = v; }, "email"),
+        field("Email subject", f.email.subject, function (v) { f.email.subject = v; })
+      ));
+      return [c, fc, listManager("Social & web links", d.socials, {
         noun: "link", addAtTop: false, required: { key: "url", label: "Link" },
         blank: function () { return { label: "", url: "" }; },
         fields: [T("label", "Name (e.g. LinkedIn)"), T("url", "Link (https://…)", "url")],

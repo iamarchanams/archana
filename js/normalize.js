@@ -26,7 +26,9 @@
       if (!(key in c.sectionVisibility)) c.sectionVisibility[key] = true;
     });
 
-    c.home = Object.assign({ name: "", headline: "", tagline: "", photo: "", ctaContactText: "Get in Touch", ctaResumeText: "Download Resume", resumeFile: "" }, c.home);
+    c.home = Object.assign({ name: "", headline: "", tagline: "", photo: "", ctaContactText: "Get in Touch", ctaResumeText: "Download Resume", resumeFile: "", photoStyle: "square", photoAnimation: "float-glow" }, c.home);
+    if (["square", "transparent", "circle"].indexOf(c.home.photoStyle) === -1) c.home.photoStyle = "square";
+    if (["float-glow", "float", "glow", "none"].indexOf(c.home.photoAnimation) === -1) c.home.photoAnimation = "float-glow";
     c.about = Object.assign({ heading: "About Me", bio: "", location: "", languages: [] }, c.about);
     c.about.languages = arr(c.about.languages);
 
@@ -69,6 +71,16 @@
 
     c.contact = Object.assign({ heading: "Get in Touch", subheading: "", phone: "", email: "", location: "", socials: [] }, c.contact);
     c.contact.socials = arr(c.contact.socials);
+
+    // floating quick-contact buttons (blank number/address = use the contact details above)
+    var f = c.contact.floating && typeof c.contact.floating === "object" ? c.contact.floating : {};
+    c.contact.floating = {
+      enabled: f.enabled !== false,
+      position: f.position === "left" ? "left" : "right",
+      whatsapp: Object.assign({ enabled: true, number: "", message: "Hi! I saw your portfolio and would like to connect." }, f.whatsapp),
+      call: Object.assign({ enabled: true, number: "" }, f.call),
+      email: Object.assign({ enabled: true, address: "", subject: "Enquiry from your portfolio" }, f.email)
+    };
 
     return c;
   }
