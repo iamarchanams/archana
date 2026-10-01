@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "siteTitle": "Archana M.S | Digital & Sales Marketing Executive",
+    "seoDescription": "Portfolio of Archana M.S, Digital & Sales Marketing Executive — skills, experience, education, certifications and sales performance highlights.",
+    "seoKeywords": "Archana M.S, digital marketing executive, sales executive, Kerala",
+    "favicon": "media/images/favicon.png"
+  },
+  "sectionOrder": ["home", "about", "skills", "experience", "education", "certifications", "achievements", "contact"],
+  "sectionVisibility": {
+    "home": true,
+    "about": true,
+    "skills": true,
+    "experience": true,
+    "education": true,
+    "certifications": true,
+    "achievements": true,
+    "contact": true
+  },
+  "home": {
+    "name": "Archana M.S",
+    "headline": "Digital & Sales Marketing Executive",
+    "tagline": "Turning leads into lasting business relationships.",
+    "photo": "media/images/PLACEHOLDER-portrait.jpg",
+    "ctaContactText": "Get in Touch",
+    "ctaResumeText": "Download Resume",
+    "resumeFile": ""
+  },
+  "about": {
+    "heading": "About Me",
+    "bio": "To pursue a challenging career with dedication and provide my efficiency to the fullest in a professional organizational environment wherever I serve my duties that will discover the potential in me.",
+    "location": "Kunnathukal P.O., Trivandrum, Kerala",
+    "languages": ["English", "Malayalam", "Tamil"]
+  },
+  "skills": {
+    "heading": "Skills",
+    "items": ["Teaching", "Team Player", "Fast Learner"]
+  },
+  "experience": {
+    "heading": "Experience",
+    "items": [
+      {
+        "company": "Avodha Edutech",
+        "role": "Team Manager",
+        "duration": "1 Year",
+        "description": ""
+      }
+    ]
+  },
+  "education": {
+    "heading": "Education",
+    "items": [
+      {
+        "degree": "B.Sc. Biotechnology",
+        "institution": "Malankara Catholic College, Mariagiri, Tamil Nadu",
+        "score": "84%",
+        "year": "2020"
+      },
+      {
+        "degree": "Higher Secondary School",
+        "institution": "Vocational Higher Secondary School, Parassala",
+        "score": "77%",
+        "year": "2016"
+      },
+      {
+        "degree": "High School",
+        "institution": "C.S.I WF Central School, Karakonam",
+        "score": "90%",
+        "year": "2015"
+      },
+      {
+        "degree": "Academic Project — Team Leader",
+        "institution": "Screening of Phytochemicals, Antimicrobial and Antioxidant analysis of Pimenta Dioca (6 months, team of 6)",
+        "score": "",
+        "year": ""
+      }
+    ]
+  },
+  "certifications": {
+    "heading": "Certifications",
+    "items": [
+      {
+        "title": "Medical Coding",
+        "institution": "Transorze Solutions, Ambalathara, Trivandrum",
+        "year": "2021"
+      },
+      {
+        "title": "Hospital Management",
+        "institution": "",
+        "year": "2022"
+      }
+    ]
+  },
+  "achievements": {
+    "heading": "Performance Highlights",
+    "subheading": "Monthly sales and closing performance.",
+    "items": [
+      {
+        "period": "First Month",
+        "summary": "Strong first month with more closings than expected, positive client response, and several promising leads identified for follow-up.",
+        "closings": "4",
+        "revenue": "\u20b99,296",
+        "dealValue": ""
+      },
+      {
+        "period": "September",
+        "summary": "Closed deals across the Orderbix and Storebix platforms, building strong momentum heading into the next follow-up cycle.",
+        "closings": "8",
+        "revenue": "\u20b932,195",
+        "dealValue": "\u20b949,294"
+      }
+    ]
+  },
+  "contact": {
+    "heading": "Get in Touch",
+    "subheading": "Open to new opportunities in digital and sales marketing.",
+    "phone": "+91 96338 55662",
+    "email": "archanams979@gmail.com",
+    "location": "Kunnathukal P.O., Trivandrum, Kerala"
+  }
+}
